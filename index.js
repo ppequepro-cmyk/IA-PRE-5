@@ -1,7 +1,7 @@
 import makeWASocket,{DisconnectReason,useMultiFileAuthState,fetchLatestBaileysVersion} from '@whiskeysockets/baileys';
 import pino from 'pino';
 import {config,validateConfig} from './src/config.js';
-import {addHistory,allowResponse,getHistory,getMessageText,isGroupJid,normalizeJid} from './src/behavior.js';
+import {addHistory,allowResponse,getHistory,getMessageText,isGroupJid,normalizeJid,isCreatorRequest,isComplaintMessage} from './src/behavior.js';
 import {askAI} from './src/ai.js';
 const log=pino({level:process.env.LOG_LEVEL||'info'}), seen=new Set();
 function phone(jid=''){return normalizeJid(jid).split('@')[0].split('.')[0];}
