@@ -35,11 +35,11 @@ async function start(){
         const decision=allowResponse({chatJid:chat,senderJid:sender,isGroup:group,text,message:msg,botJid:sock.user?.id??'',cooldownMs:group?config.groupCooldownMs:config.privateCooldownMs});
         if(!decision.allowed) continue;
         if(decision.command==='creator' || isCreatorRequest(text)){
-          await sock.sendMessage(chat,{text:'👑 Creador: Emmanuel\\nProyecto: '+config.botName+'\\nInstagram: https://www.instagram.com/emma.l.121?dlrf=ZHpwaTF1emZ5MDQ5\\nContacto para quejas: +1 (320) 210-9768'},{quoted:msg});
+          await sock.sendMessage(chat,{text:'👑 Creador: Emmanuel\nProyecto: '+config.botName+'\nInstagram: https://www.instagram.com/emma.l.121?dlrf=ZHpwaTF1emZ5MDQ5\nContacto para quejas: +1 (320) 210-9768'},{quoted:msg});
           continue;
         }
         if(isComplaintMessage(text)){
-          await sock.sendMessage(chat,{text:'🛠️ IA-PRE-5 está en desarrollo. Si hay algún problema, por favor házmelo saber para que lo arregle.\\n\\nContacto: +1 (320) 210-9768\\nInstagram: https://www.instagram.com/emma.l.121?dlrf=ZHpwaTF1emZ5MDQ5'},{quoted:msg});
+          await sock.sendMessage(chat,{text:'🛠️ IA-PRE-5 está en desarrollo. Si hay algún problema, por favor házmelo saber para que lo arregle.\n\nContacto: +1 (320) 210-9768\nInstagram: https://www.instagram.com/emma.l.121?dlrf=ZHpwaTF1emZ5MDQ5'},{quoted:msg});
           continue;
         }
         if(/^!(stats|anuncio|ban)\\b/i.test(text)){
