@@ -35,6 +35,16 @@ export function isCreatorCommand(text = '') {
   return /^!creador(?:\s|$)/i.test(text.trim());
 }
 
+export function isCreatorRequest(text = '') {
+  const normalized = text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  return /\b(creador|creada por|creado por|quien te creo|quien te hizo|quien te desarrollo|quien te programo|quien te diseno|quien te construyo|quien te invento)\b/i.test(normalized);
+}
+
+export function isComplaintMessage(text = '') {
+  const normalized = text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  return /\b(queja|quejas|reclamo|reclamos|problema|problemas|error|errores|falla|fallas|fallando|bug|bugs|no funciona|no sirve|se rompio|esta roto)\b/i.test(normalized);
+}
+
 export function allowResponse({ chatJid, senderJid, isGroup, text, message, botJid, cooldownMs }) {
   if (!text) return { allowed: false, reason: 'empty' };
   if (isCreatorCommand(text)) return { allowed: true, command: 'creator' };
