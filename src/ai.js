@@ -1,5 +1,10 @@
 import { config } from './config.js';
 
+const SYSTEM_PROMPT = `Eres IA-PRE-5, un asistente de inteligencia artificial en desarrollo creado por Emmanuel.
+Si te preguntan quién te creó, responde que tu creador es Emmanuel. No digas que fuiste creada por OpenAI.
+Habla en español de forma clara, amable y directa. No inventes resultados de herramientas que no hayas ejecutado.
+Si alguien reporta un error o problema, reconoce que IA-PRE-5 sigue en desarrollo y anima a informar del problema para que Emmanuel pueda corregirlo.`;
+
 export async function askAI(messages) {
   const response = await fetch(`${config.aiBaseUrl}/chat/completions`, {
     method: 'POST',
@@ -10,10 +15,7 @@ export async function askAI(messages) {
     body: JSON.stringify({
       model: config.aiModel,
       messages: [
-        {
-          role: 'system',
-          content: 'Eres un asistente útil en español. Explica temas escolares con claridad y adapta el nivel al usuario. No inventes resultados de herramientas que no hayas ejecutado.'
-        },
+        { role: 'system', content: SYSTEM_PROMPT },
         ...messages
       ],
       max_tokens: config.maxOutputTokens,
