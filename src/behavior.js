@@ -42,7 +42,7 @@ export function isCreatorRequest(text = '') {
 
 export function isComplaintMessage(text = '') {
   const normalized = text.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-  return /\b(queja|quejas|reclamo|reclamos|problema|problemas|error|errores|falla|fallas|fallando|bug|bugs|no funciona|no sirve|se rompio|esta roto)\b/i.test(normalized);
+  return /\b(queja|quejas|reclamo|reclamos|error|errores|falla|fallas|fallando|bug|bugs|no funciona|no sirve|se rompio|esta roto|no responde|tengo (?:un )?problema|hay (?:un )?problema|reporto (?:un )?problema|reportar (?:un )?problema)\b/i.test(normalized);
 }
 
 export function allowResponse({ chatJid, senderJid, isGroup, text, message, botJid, cooldownMs }) {
