@@ -80,10 +80,10 @@ const quietHeader = 'if (process.env.LIBSIGNAL_DEBUG === \'1\') console.error("F
 const quietDetail = 'if (process.env.LIBSIGNAL_DEBUG === \'1\') console.error("Session error:" + e, e.stack);';
 
 if (signal.includes(noisyHeader)) {
-  signal = signal.replace(noisyHeader, quietHeader);
+  signal = signal.replaceAll(noisyHeader, quietHeader);
 }
 if (signal.includes(noisyDetail)) {
-  signal = signal.replace(noisyDetail, quietDetail);
+  signal = signal.replaceAll(noisyDetail, quietDetail);
 }
 
 if (signal.includes(noisyHeader) || signal.includes(noisyDetail)) {
