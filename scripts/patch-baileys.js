@@ -86,7 +86,12 @@ if (signal.includes(noisyDetail)) {
   signal = signal.replaceAll(noisyDetail, quietDetail);
 }
 
-if (signal.includes(noisyHeader) || signal.includes(noisyDetail)) {
+const hasUnpatchedNoisyLine = signal.split(/\r?\n/).some((line) => {
+  const trimmed = line.trim();
+  return trimmed === noisyHeader || trimmed === noisyDetail;
+});
+
+if (hasUnpatchedNoisyLine) {
   throw new Error('No se pudo silenciar de forma segura el registro repetitivo de libsignal.');
 }
 
